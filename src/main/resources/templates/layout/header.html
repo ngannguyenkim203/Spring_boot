@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Header</title>
+</head>
+<body>
+
+<!-- Fragment for HEAD section -->
+<th:block th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/bootstrap-4.3.1-dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/custom/custom.css}" />
+</th:block>
+
+<!-- Fragment for BODY/HEADER section -->
+<div th:fragment="body">
+    <header class="bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center py-3">
+                <div class="col-md-3">
+                    <h1 class="h3 mb-0">
+                        <i class="fas fa-desktop mr-2"></i>
+                        Quản Lý Lịch Hẹn
+                    </h1>
+                </div>
+                <div class="col-md-9">
+                    <nav class="navbar navbar-expand-md navbar-dark p-0">
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Lịch Hẹn -->
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold" href="/listLichHen">
+                                    <i class="fas fa-users mr-1"></i> DS Lịch Hẹn
+                                </a>
+                            </li>
+
+<!--                            &lt;!&ndash; Dịch vụ &ndash;&gt;-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link font-weight-bold" href="/listDichVu">-->
+<!--                                    <i class="fas fa-boxes mr-1"></i> DS Dịch vụ-->
+<!--                                </a>-->
+<!--                            </li>-->
+
+<!--                            &lt;!&ndash; Máy &ndash;&gt;-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link font-weight-bold" href="/listMay">-->
+<!--                                    <i class="fas fa-desktop mr-1"></i> DS Máy-->
+<!--                                </a>-->
+<!--                            </li>-->
+
+<!--                            &lt;!&ndash; Đăng ký &ndash;&gt;-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link font-weight-bold" href="/formCreateSuDungMay">-->
+<!--                                    <i class="fas fa-laptop-code mr-1"></i> ĐK Sử dụng Máy-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link font-weight-bold" href="/formDangKySuDungDichVu">-->
+<!--                                    <i class="fas fa-clipboard-check mr-1"></i> ĐK Sử dụng Dịch vụ-->
+<!--                                </a>-->
+<!--                            </li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<!-- Bootstrap JS -->
+<th:block th:fragment="scripts">
+    <script th:src="@{/custom/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/bootstrap-4.3.1-dist/js/bootstrap.bundle.js}"></script>
+</th:block>
+
+</body>
+</html>

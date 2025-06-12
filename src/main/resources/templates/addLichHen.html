@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Include header fragment -->
+  <div th:replace="layout/header :: head"></div>
+  <title>hello</title>
+
+  <!-- Custom Styles -->
+  <!-- Custom Styles -->
+</head>
+
+<body>
+<!-- Include header body -->
+<div th:replace="layout/header :: body"></div>
+
+<main class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="main-card">
+        <div class="card-header-custom">
+          <h4 class="mb-1">Thêm mới Lịch hẹn</h4>
+          <p class="text-muted mb-0 small">Nhập thông tin chi tiết về lịch hẹn</p>
+        </div>
+        <p th:if="${error}" th:text="${error}" style="color:red;" class="text-center mt-2"></p>
+        <div class="card-body p-4">
+          <!--/*@thymesVar id="lichHenEntity" type=""*/-->
+          <form th:action="@{/saveLichHen}" th:object="${newLichHen}" method="post" id="addLichHenForm" class="needs-validation">
+            <!-- Tên bệnh nhân & Tên bác sĩ -->
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label for="selectBN" class="form-label">Bệnh nhân: </label>
+                <select class="form-select" id="selectBN" name="benhNhan" required>
+                  <option value="" selected disabled>-- Chọn tên bệnh nhân --</option>
+                  <option th:each="bn : ${benhnhans}"
+                          th:value="${bn.maBN}"
+                          th:text="${bn.hoTen}">
+                  </option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="selectBS" class="form-label">Bác sĩ: </label>
+                <select class="form-select" id="selectBS" name="bacSi" required>
+                  <option value="" selected disabled>-- Chọn tên bác sĩ --</option>
+                  <option th:each="bs : ${bacsis}"
+                          th:value="${bs.maBS}"
+                          th:text="${bs.hoTen}">
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Tên khoa & Triệu chứng -->
+            <div class="row g-4 mt-3">
+              <div class="col-md-6">
+                <label class="form-label">Triệu chứng: </label>
+                <textarea class="form-control" name="trieuChung"></textarea>
+              </div>
+
+              <div class="col-md-6">
+                <label for="selectKhoa" class="form-label">Khoa :</label>
+                <select class="form-select" id="selectKhoa" name="khoa" required>
+                  <option value="" selected disabled>-- Chọn tên khoa --</option>
+                  <option th:each="k : ${khoas}"
+                          th:value="${k.maKhoa}"
+                          th:text="${k.tenKhoa}">
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-4 mt-3">
+              <div class="col-md-6">
+                <label class="form-label" for="ngayHen">Ngày hẹn</label>
+                <input
+                        type="date"
+                        id="ngayHen"
+                        name="ngayHen"
+                        class="form-control"
+                        required
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label for="selectGioHen" class="form-label"> Giờ hẹn: </label>
+                <select class="form-select" id="selectGioHen" name="gioHen" required>
+                  <option value="" selected disabled>-- Chọn giờ hẹn --</option>
+                  <option>8h - 8h30</option>
+                  <option>8h30 - 9h</option>
+                  <option>9h - 9h30</option>
+                  <option>9h30 - 10h</option>
+                  <option>10h - 10h30</option>
+                  <option>10h30 - 11h</option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex gap-3 mt-4">
+              <button type="submit" class="btn text-white btn-custom flex-grow-1 mr-3">
+                Lưu thông tin
+              </button>
+              <button type="reset" class="btn btn-light flex-grow-1">
+                Làm mới
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!--&lt;!&ndash; Include footer &ndash;&gt;-->
+<!--<div th:replace="layout/footer :: footer"></div>-->
+
+<!-- Include scripts -->
+<div th:replace="layout/header :: scripts"></div>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+
+    Array.from(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+
+</body>
+</html>
